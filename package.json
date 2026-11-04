@@ -1,0 +1,44 @@
+{
+  "name": "rocm-benchmark-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "capture:readme": "node scripts/capture-readme.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1162.0",
+    "@aws-sdk/s3-request-presigner": "^3.1162.0",
+    "@electric-sql/pglite": "^0.5.15",
+    "@neondatabase/serverless": "^1.2.0",
+    "drizzle-orm": "^0.45.4",
+    "nanoid": "^6.0.2",
+    "next": "16.4.5",
+    "next-auth": "^5.0.0-beta.32",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "recharts": "^3.10.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/ws": "^8.18.2",
+    "dotenv": "^18.0.9",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.5",
+    "playwright": "^1.51.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

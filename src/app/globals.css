@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0c0d10;
+  --bg-elevated: #14161c;
+  --fg: #f2f0eb;
+  --muted: #9a958c;
+  --line: rgba(242, 240, 235, 0.12);
+  --accent: #e31c23;
+  --accent-soft: rgba(227, 28, 35, 0.18);
+  --amd: #e31c23;
+  --nvidia: #76b900;
+  --chart-1: #e31c23;
+  --chart-2: #f59e0b;
+  --chart-3: #38bdf8;
+  --chart-4: #a3e635;
+  --chart-5: #c084fc;
+  --chart-6: #fb7185;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-elevated: var(--bg-elevated);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display), system-ui, sans-serif;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 10% -10%, rgba(227, 28, 35, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 0%, rgba(56, 189, 248, 0.08), transparent 50%),
+    linear-gradient(180deg, #0c0d10 0%, #101218 40%, #0c0d10 100%);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+.metric-num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s ease-out both;
+}
+
+.animate-rise-delay {
+  animation: rise 0.7s ease-out 0.15s both;
+}
+
+.animate-rise-delay-2 {
+  animation: rise 0.7s ease-out 0.3s both;
+}
+
+.scan-line {
+  animation: pulse-line 3.2s ease-in-out infinite;
+}
