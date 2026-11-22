@@ -1,10 +1,15 @@
 import "dotenv/config";
-import { join } from "path";
 import { getDb } from "./index";
+import { defaultPglitePath } from "./local-path";
 
-if (!process.env.DATABASE_URL && !process.env.ROCM_DB_PATH) {
-  process.env.ROCM_DB_PATH = join(process.cwd(), ".data", "pglite");
+if (
+  !process.env.DATABASE_URL &&
+  process.env.ROCM_DB_MEMORY !== "1" &&
+  !process.env.ROCM_DB_PATH
+) {
+  process.env.ROCM_DB_PATH = defaultPglitePath();
 }
+
 import { gpus, workloads, users, submissions } from "./schema";
 import { GPU_SEED, WORKLOAD_SEED } from "../lib/catalog";
 import { configFingerprint } from "../lib/fingerprint";

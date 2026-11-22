@@ -4,6 +4,7 @@ import { drizzle as drizzlePglite } from "drizzle-orm/pglite";
 import { PGlite } from "@electric-sql/pglite";
 import { mkdirSync } from "fs";
 import * as schema from "./schema";
+import { resolvePglitePersistDir } from "./local-path";
 
 type AppDb =
   | ReturnType<typeof drizzleNeon<typeof schema>>
@@ -90,7 +91,7 @@ async function initDb(): Promise<AppDb> {
     return drizzleNeon({ client: sql, schema });
   }
 
-  const persistDir = process.env.ROCM_DB_PATH;
+  const persistDir = resolvePglitePersistDir();
   if (persistDir) {
     mkdirSync(persistDir, { recursive: true });
   }

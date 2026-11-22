@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "setup": "node scripts/setup-dev.mjs",
+    "setup:playwright": "node scripts/setup-playwright.mjs",
     "dev": "next dev",
+    "dev:seed": "npm run db:seed && npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

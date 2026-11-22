@@ -43,14 +43,36 @@ npm run db:seed
 
 ```bash
 npm install
-cp .env.example .env.local
-npm run db:seed
-npm run dev
+npm run setup
+npm run dev:seed
 ```
+
+`npm run setup` copies `.env.example` → `.env.local` when missing. `npm run dev:seed` seeds demo data then starts the dev server.
 
 Open [http://localhost:3000](http://localhost:3000) for the home page.
 
 Sign in with **Dev Login** on `/login` (no GitHub app required locally), then upload JSON at `/upload`.
+
+### Developer experience
+
+| Command | Purpose |
+| -------- | -------- |
+| `npm run setup` | Create `.env.local` from `.env.example` + print next steps |
+| `npm run dev:seed` | Seed DB and start `next dev` in one step |
+| `npm run setup:playwright` | Install Chromium into `.playwright-browsers/` (for README screenshots) |
+| `npm run capture:readme` | Save `docs/homepage.png` while dev server is running |
+
+**Local database:** With no `DATABASE_URL`, `next dev` uses file-backed PGlite at `.data/pglite` by default so it matches `npm run db:seed`. Override with `ROCM_DB_PATH` or use `ROCM_DB_MEMORY=1` for in-memory.
+
+**Node / npm on Windows:** If `npm` is not recognized, install [Node.js LTS](https://nodejs.org), then **open a new terminal** (or restart Cursor) so `PATH` updates.
+
+Refresh README screenshot:
+
+```bash
+npm run dev
+npm run setup:playwright   # once
+npm run capture:readme
+```
 
 ## Environment
 
@@ -59,7 +81,8 @@ Sign in with **Dev Login** on `/login` (no GitHub app required locally), then up
 | `AUTH_SECRET` | Auth.js session secret |
 | `AUTH_GITHUB_ID` / `AUTH_GITHUB_SECRET` | GitHub OAuth |
 | `DATABASE_URL` | Neon connection string (optional locally) |
-| `ROCM_DB_PATH` | Local PGlite directory (seed script sets `.data/pglite` by default) |
+| `ROCM_DB_PATH` | Local PGlite directory (default `.data/pglite` in dev) |
+| `ROCM_DB_MEMORY` | Set to `1` for in-memory PGlite (no disk) |
 | `R2_*` | Cloudflare R2 artifact uploads |
 
 ## Upload schema
