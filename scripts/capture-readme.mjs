@@ -2,6 +2,10 @@ import { chromium } from "playwright";
 import { mkdirSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { ensurePlaywrightBrowsersHint } from "./playwright-env.mjs";
+
+import "./playwright-env.mjs";
+ensurePlaywrightBrowsersHint();
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const out = join(root, "docs", "homepage.png");
